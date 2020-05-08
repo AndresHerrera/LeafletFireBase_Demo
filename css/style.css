@@ -1,0 +1,25 @@
+
+#register_section{
+    position: fixed;
+    left: 5%;
+    top: 5%;
+}
+
+#map_section{
+    position: absolute;
+    left: 20%;
+    top: 5%;
+}
+
+#mapid{
+    position: fixed;
+	width:55%;
+	height:100%;
+}
+
+#list_section{
+    position: absolute;
+    left: 78%;
+    top: 5%;
+}
+

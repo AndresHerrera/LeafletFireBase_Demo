@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Leaflet + Firebase Demo </title>
+	<link rel="stylesheet" href="lib/leaflet/leaflet.css" />
+	<script src="lib/leaflet/leaflet.js"></script>
+	<link rel="stylesheet" href="lib/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.min.css" />
+	<script src="lib/leaflet-groupedlayercontrol/leaflet.groupedlayercontrol.min.js"></script>
+	<script src="lib/jquery/jquery-3.4.1.js"></script>
+	
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<div id="register_section">
+        <h3>Registro de sitios</h3>
+		<p>
+			<label for="codeSite">ID sitio</label>
+			<input type="text" placeholder="Id" id="codeSite" size="5">
+		</p>
+		<label for="nameSite">Nombre sitio:</label>
+        <p><input type="text" placeholder="Nombre" id="nameSite"></p>
+		<label for="descriptionSite">Descripci&oacute;n del sitio:</label>
+        <p><input type="text" placeholder="Descripci&oacute;n" id="descriptionSite"></p>
+		<label for="latSite">Ubicaci&oacute;n:</label>
+        <p>
+			<input type="text" placeholder="Longitud" size="8" id="lonSite">
+			<input type="text" placeholder="Latitud" size="8" id="latSite">
+		</p>
+        
+       
+        <h4>Categoria</h4>
+		<p>
+            <img class="category" src="images/c1.png" width="32">
+            <img class="category" src="images/c2.png" width="32">
+            <img class="category" src="images/c3.png" width="32">
+            <img class="category" src="images/c4.png" width="32">
+			<img class="category" src="images/c5.png" width="32">
+        </p>
+        <p>
+            <img class="category" src="images/c6.png" width="32">
+            <img class="category" src="images/c7.png" width="32">
+            <img class="category" src="images/c8.png" width="32">
+            <img class="category" src="images/c9.png" width="32">
+			<img class="category" src="images/c10.png" width="32">
+        </p>
+		<p>
+            <img class="category" src="images/c11.png" width="32">
+            <img class="category" src="images/c12.png" width="32">
+            <img class="category" src="images/c13.png" width="32">
+            <img class="category" src="images/c14.png" width="32">
+			<img class="category" src="images/c15.png" width="32">
+        </p>
+			<p><button id="registerBtn">Registrar Nuevo Sitio</button></p>
+    </div>
+	
+	<div id="map_section">
+		<div id="mapid"></div>
+	</div>
+	
+	<div id="list_section">
+        <h3>Lista sitios registrdos</h3>
+        <ol id="contenedorBase">
+        </ol>
+    </div>
+
+
+
+<script>
+
+	var basemaps = 
+	{
+		Streets: L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+		{
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		})
+	};
+  
+	var wmsLayer = L.tileLayer.wms('http://idesc.cali.gov.co:8081/geoserver/wms?service=WMS&version=1.1.0', 
+	{
+		layers: 'idesc:mc_comunas',
+		attribution: 'Creditos de la capa',
+		format: 'image/png',
+		transparent: true
+	});
+	
+	var mymap = L.map('mapid',
+	{
+		zoom: 10
+	}).setView([3.42335,-76.52086], 13);
+	
+	basemaps.Streets.addTo(mymap);
+	wmsLayer.addTo(mymap);
+	
+	var markerIcon = L.icon(
+	{
+		iconSize: [27, 27],
+		iconAnchor: [13, 27],
+		popupAnchor:  [1, -24],
+		iconUrl: 'images/new.png' 
+	});
+	
+	markerDrag = L.marker( [ 3.42335,-76.52086  ],
+	{
+		draggable: true,
+		icon:markerIcon,
+	}).addTo(mymap)
+	.on('dragend', function() 
+	{
+		$('#lonSite').val(markerDrag.getLatLng().lng);
+		$('#latSite').val(markerDrag.getLatLng().lat);
+	});
+	
+	$('#lonSite').val(markerDrag.getLatLng().lng);
+	$('#latSite').val(markerDrag.getLatLng().lat);
+			
+	markerDrag.addTo(mymap);		
+	
+	var groupedOverlays = {
+	  "Capas IDESC": {
+		"Manzanas": wmsLayer
+	  }
+	};
+	
+	var layerControl=L.control.groupedLayers(basemaps, groupedOverlays);
+	layerControl.addTo(mymap);
+
+	mymap.on('click', function (e) 
+	{
+		
+	});
+	mymap.on('mousedown', function (e) {  });
+	
+	
+	
+	
+</script>
+
+</body>
+
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-database.js"></script>
+<script type="text/javascript" src="js/model/siteobj.js"></script>
+<script type="text/javascript" src="js/control/functions.js"></script>
+	
+	
+</html>

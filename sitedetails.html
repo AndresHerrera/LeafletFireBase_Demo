@@ -1,0 +1,30 @@
+<html>
+
+    <head>
+        <title>Agregar detalles</title>
+    </head>
+
+    <body>
+
+        <h3 id="idsite">Loading...</h3>
+
+        <p><input type="text" id="nameDetail" placeholder="Detalle"></p>
+        <p><input type="text" id="valueDetail" placeholder="Valor"></p>
+        <p><button id="registrarBtn">Registrar Detalles</button></p>
+
+
+        <h4>Detalles del Sitio</h4>
+        <ol id="materiasContainer"></ol>
+		
+		<a href="index.html">Regresar</a>
+
+    </body>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-database.js"></script>
+    <script type="text/javascript" src="js/model/siteobj.js"></script>
+    <script type="text/javascript" src="js/model/sitedetails.js"></script>
+    <script type="text/javascript" src="js/control/addsitedetails.js"></script>
+
+
+</html>
