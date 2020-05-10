@@ -1,12 +1,12 @@
 var firebaseConfig = {
-    apiKey: "AIzaSyCN5fEvDB7SGhX0dFjk7ZHag8e7m4mDb4w",
+    apiKey: "AIzaSyCN5fEvDB7SGhX0dFjk7ZHag8e7m4mDb",
     authDomain: "geolocalizationandresh.firebaseapp.com",
     databaseURL: "https://geolocalizationandresh.firebaseio.com",
     projectId: "geolocalizationandresh",
     storageBucket: "geolocalizationandresh.appspot.com",
-    messagingSenderId: "500708550761",
-    appId: "1:500708550761:web:1747cb79d86b49d83a1af8",
-    measurementId: "G-QBSDYY5BSJ"
+    messagingSenderId: "50070855071",
+    appId: "1:500708550761:web:1747cb79d86b49d83a1a",
+    measurementId: "G-QBSDYY5B"
   };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
